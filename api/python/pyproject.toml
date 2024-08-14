@@ -1,0 +1,28 @@
+[project]
+name = "sonnylabs"
+version = "0.0.2"
+description = "SonnyLabs API"
+license = {text = "Apache-2.0"}
+readme = "README.md"
+authors = [
+    { name="Padraig O Conbhui", email="poconbhui@sonnylabs.ai" }
+]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: Apache Software License",
+    "Operating System :: OS Independent",
+]
+
+dependencies = [
+    "requests"
+]
+
+[project.urls]
+Homepage = "https://sonnylabs.ai"
+
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+packages = ["sonnylabs"]

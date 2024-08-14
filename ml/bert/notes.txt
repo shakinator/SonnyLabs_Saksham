@@ -1,0 +1,3 @@
+https://medium.com/@quocnle/how-we-scaled-bert-to-serve-1-billion-daily-requests-on-cpus-d99be090db26
+- DistilBert + No zero-padding + PyTorch Quantization
+- one process per Bert, set PyTorch num_threads to 1

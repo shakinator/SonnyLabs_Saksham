@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SonnyLabs.ai - Comprehensive AI Security</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet" crossorigin="anonymous">
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: 'Roboto', sans-serif;
+            color: #ffffff;
+            background-color: #0e1021;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 10px 20px 0 20px;
+        }
+        header {
+            background-color: #0e1021;
+            padding: 20px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid #ffffff;
+            transition: all 0.3s;
+        }
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            color: #ffffff;
+        }
+        nav {
+            float: right;
+        }
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+        nav ul li {
+            display: inline;
+            margin-left: 20px;
+        }
+        nav ul li a {
+            text-decoration: none;
+            color: #ffffff;
+            transition: color 0.3s;
+        }
+        nav ul li a:hover {
+            color: #007BFF;
+        }
+        section {
+            padding: 100px 0;
+            border-bottom: 1px solid #ffffff;
+        }
+        h1, h2, h3 {
+            color: #ffffff;
+            margin-bottom: 20px;
+        }
+        h1 {
+            font-size: 48px;
+        }
+        h2 {
+            font-size: 36px;
+        }
+        h3 {
+            font-size: 24px;
+        }
+        #threat-detection h3 {
+            margin-right: 15px;
+        }
+
+        #threat-detection p {
+            line-height: 1.6;
+            font-size: 18px;
+            margin-left: 15px;
+        }
+        .cta-button {
+            display: inline-block;
+            background-color: #007BFF;
+            color: #ffffff;
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 18px;
+            transition: background-color 0.3s;
+            border: 1px solid #ffffff;
+        }
+        .cta-button:hover {
+            background-color: #0056b3;
+        }
+        .feature-item, .benefit-item, .threat-item, .service-item, .stat {
+            display: flex;
+            align-items: center;
+            margin-bottom: 30px;
+            background-color: #0e1021;
+            border: 1px solid #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+        .feature-item:hover, .benefit-item:hover, .threat-item:hover, .service-item:hover, .stat:hover {
+            background-color: #ffffff;
+            color: #000000;
+        }
+        .feature-item:hover h3, .benefit-item:hover h3, .threat-item:hover h3, .service-item:hover h3, .stat:hover h3 {
+            color: #000000;
+        }
+        .feature-item img, .benefit-item img, .threat-item img, .service-item img {
+            width: 100px;
+            height: 100px;
+            margin-right: 20px;
+            object-fit: cover;
+            border-radius: 10px;
+            border: 1px solid #ffffff;
+        }
+        .stat-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            text-align: center;
+        }
+        .stat {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            background-color: #0e1021;
+            padding: 20px;
+            border-radius: 10px;
+            border: 1px solid #ffffff;
+            transition: all 0.3s ease;
+        }
+        .stat img {
+            width: 50px;
+            height: 50px;
+            object-fit: contain;
+            margin-bottom: 10px;
+        }
+
+        .stat h3 {
+            margin-top: 0;
+            margin-bottom: 10px;
+        }
+
+        .stat p {
+            margin-top: 0;
+        }
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+        }
+        .team-member {
+            text-align: center;
+            background-color: #0e1021;
+            border: 1px solid #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+        }
+        .team-member img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 10px;
+            border: 1px solid #ffffff;
+        }
+        footer {
+            background-color: #0e1021;
+            color: #ffffff;
+            padding: 40px 0;
+            text-align: center;
+            border-top: 1px solid #ffffff;
+        }
+        .hidden {
+            opacity: 0;
+            filter: blur(5px);
+            transform: translateX(-100%);
+            transition: all 1s;
+        }
+        .show {
+            opacity: 1;
+            filter: blur(0);
+            transform: translateX(0);
+        }
+        .threat-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        .benefit-text {
+            margin-left: 40px;
+        }
+        .hamburger {
+            display: none;
+            cursor: pointer;
+        }
+
+        .bar {
+            display: block;
+            width: 25px;
+            height: 3px;
+            margin: 5px auto;
+            -webkit-transition: all 0.3s ease-in-out;
+            transition: all 0.3s ease-in-out;
+            background-color: #ffffff;
+        }
+
+        @media (max-width: 768px) {
+            .hamburger {
+                display: block;
+            }
+
+            .hamburger.active .bar:nth-child(2) {
+                opacity: 0;
+            }
+
+            .hamburger.active .bar:nth-child(1) {
+                transform: translateY(8px) rotate(45deg);
+            }
+
+            .hamburger.active .bar:nth-child(3) {
+                transform: translateY(-8px) rotate(-45deg);
+            }
+
+            nav ul {
+                position: fixed;
+                left: -100%;
+                top: 70px;
+                gap: 0;
+                flex-direction: column;
+                background-color: #0e1021;
+                width: 100%;
+                text-align: center;
+                transition: 0.3s;
+            }
+
+            nav ul.active {
+                left: 0;
+            }
+
+            nav ul li {
+                margin: 16px 0;
+            }
+        }
+
+        #hero {
+            position: relative;
+            overflow: hidden;
+            padding-top: 80px;
+        }
+        #hero .container {
+            position: relative;
+            z-index: 2;
+        }
+        .video-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+        #hero video {
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            object-fit: cover;
+        }
+        #hero::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(14, 16, 33, 0.6);
+            z-index: 1;
+        }
+        @media (max-width: 768px) {
+            header {
+                padding: 10px 0;
+            }
+            .logo {
+                font-size: 20px;
+            }
+            nav ul li {
+                display: block;
+                margin: 10px 0;
+            }
+        }
+        #featured-in .container img {
+            max-width: 100%;
+            height: auto;
+            object-fit: contain;
+        }
+        #threat-detection p {
+            line-height: 1.6;
+            font-size: 18px;
+            margin-top: 10px;
+            object-fit: contain;
+        }
+
+        #threat-detection img {
+            width: 50px;
+            height: 50px;
+            object-fit: contain;
+        }
+
+        #prompt-injection-examples {
+            text-align: left;
+            padding: 50px 0;
+        }
+
+        #prompt-injection-examples img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            border: 2px solid #ffffff;
+            transition: transform 0.3s ease;
+        }
+        #prompt-injection-examples img:hover {
+            transform: scale(1.05);
+        }
+
+        #partners {
+            text-align: left;
+            padding: 10px 0;
+        }
+
+        #partners img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            border: 2px solid #ffffff;
+            transition: transform 0.3s ease;
+        }
+        #partners img:hover {
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">SonnyLabs.ai</div>
+            <nav>
+                <ul>
+                    <li><a href="#hero">Home</a></li>
+                    <li><a href="#features">Features</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+                <div class="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <section id="hero">
+        <div class="container">
+            <h1>Prevent your AI from going rogue</h1>
+            <p>SonnyLabs ensures that your custom LLM applications are secure.</p>
+            <a href="https://formsubmit.co/el/gihapo?next=https://sonnylabs.ai?email-submitted=true" target="_blank" class="cta-button">Contact us to become an early adopter</a>
+        </div>
+        <div class="video-container">
+            <video autoplay loop muted playsinline>
+                <source src="assets/bluevid.mp4" type="video/mp4">
+            </video>
+        </div>
+    </section>
+
+    <section id="partners">
+        <div class="container">
+            <h2>Partners</h2>
+            <div class="container">
+                <img src="assets/partners.png" alt="Partners">
+            </div>
+        </div>
+    </section>
+
+    <section id="security-problem">
+        <div class="container">
+            <h2>The AI Security Problem</h2>
+            <div class="stat-grid">
+                <div class="stat hidden">
+                    <h3>77%</h3>
+                    <p>of businesses reported breaches in their AI systems over the past year</p>
+                </div>
+                <div class="stat hidden">
+                    <h3>78%</h3>
+                    <p>of businesses report PII to be leaked, exposed, accessed</p>
+                </div>
+                <div class="stat hidden">
+                    <h3>91%</h3>
+                    <p>of businesses report that they need to reassure their customers about AI security</p>
+                </div>
+                <div class="stat hidden">
+                    <h3>68%</h3>
+                    <p>of Managers report Shadow AI outside control of the organization</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="threat-detection">
+        <div class="container">
+            <h2>Use SonnyLabs to block or detect LLM-specific security threats in your AI applications</h2>
+            <div class="threat-grid">
+                <div class="stat hidden">
+                    <img src="assets/promptinjection.png" alt="Prompt Injections">
+                    <h3>Prompt Injections</h3>
+                    <p>Malicious inputs are crafted by hackers to manipulate what an Generative AI application does. Prompt injections can lead to unintended actions, information leaks, or system malfunctions. </p>
+                    <p>Blocking prompt injections is crucial to maintain the integrity, security, and reliability of AI applications, ensuring they operate as intended and safeguard sensitive information against exploitation.</p>
+                </div>
+                <div class="stat hidden">
+                    <img src="assets/harmfuloutput.png" alt="Harmful Output">
+                    <h3>Harmful output</h3>
+                    <p>Any content generated by the AI that is misleading, offensive, discriminatory, or damaging. This includes hate speech, false information, privacy violations, and content that can incite harm. </p>
+                    <p>Blocking harmful output is essential to protect users, maintain trust, upstand corporate reputation and brand, and uphold ethical standards, ensuring that AI applications contribute positively and responsibly to society.</p>
+                </div>
+                <div class="stat hidden">
+                    <img src="assets/sensitivedata.png" alt="Sensitive Data Disclosure">
+                    <h3>Sensitive data disclosure</h3>
+                    <p>Prevent unintentionally revealing confidential data from your custom AI applications, such as personal details, proprietary information, or security credentials. This is critical to comply with regulations and standards, protect user privacy, safeguard intellectual property, and maintain the security of systems and data.
+                    </p>
+                    <p>Blocking sensitive information disclosure ensures that AI applications handle data responsibly and avoid having to pay giant fines from data breaches</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="prompt-injection-examples">
+        <div class="container">
+            <h2>LLMs are increasingly affected by prompt injections and other vulnerabilities</h2>
+            <div class="container">
+                <img src="assets/promptinjectionsexamples.png" alt="Prompt Injections Examples">
+            </div>
+        </div>
+    </section>
+
+    <section id="partners">
+        <div class="container">
+            <h2>SonnyLabs secures against prompt injections directly input by the user and also indirect prompt injections from many data sources, whether the AI app is internal-use only or public-facing. Example of indirect prompt injection that SonnyLabs protects against...</h2>
+            <div class="container">
+                <img src="assets/indirectprompt.jpg" alt="Partners">
+            </div>
+        </div>
+    </section>
+
+    <section id="features">
+        <div class="container">
+            <h2>Use SonnyLabs.ai for added protection on your Generative AI applications</h2>
+            <div class="feature-item hidden">
+                <img src="assets/Realtime.png" alt="Real-Time Monitoring">
+                <div>
+                    <h3>Real-Time Monitoring</h3>
+                    <p>Using our visual dashboard will help you monitor and track any threats to your LLM application, helping you be more proactive.</p>
+                </div>
+            </div>
+            <div class="feature-item hidden">
+                <img src="assets/Quickdeployment.png" alt="Quick Deployment">
+                <div>
+                    <h3>Quick Deployment</h3>
+                    <p>Deploying SonnyLabs on your LLM endpoints will be quick and effective, saving you time and resources.</p>
+                </div>
+            </div>
+            <div class="feature-item hidden">
+                <img src="assets/piileaks.png" alt="Prevent PII Leaks">
+                <div>
+                    <h3>Prevent PII Leaks</h3>
+                    <p>Protect sensitive customer data from getting into the wrong hands.</p>
+                </div>
+            </div>
+            <div class="feature-item hidden">
+                <img src="assets/promptinjection.png" alt="Eliminate Prompt Injections">
+                <div>
+                    <h3>Eliminate Prompt Injections</h3>
+                    <p>Make your Gen AI system immune to revealing information that it's not supposed to give out.</p>
+                </div>
+            </div>
+            <div class="feature-item hidden">
+                <img src="assets/harmfuloutput.png" alt="Limit Harmful Output">
+                <div>
+                    <h3>Limit Harmful Output</h3>
+                    <p>Ensure your AI application only produces safe and appropriate content.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="partners">
+        <div class="container">
+            <h2>Secures any LLM, including...</h2>
+            <div class="container">
+                <img src="assets/anyllm.png" alt="Any LLM">
+            </div>
+        </div>
+    </section>
+
+    <section id="benefits">
+        <div class="container">
+            <h2>Why organisations need specialised security for AI applications from SonnyLabs</h2>
+            <div class="benefit-item hidden">
+                <h3>150X speedier</h3>
+                <p class="benefit-text">Security tools based on AI can analyse data 150 times faster than traditional systems</p>
+            </div>
+            <div class="benefit-item hidden">
+                <h3>12 days faster</h3>
+                <p class="benefit-text">AI systems can help reduce the time it takes to detect threats and breaches by 12 days</p>
+            </div>
+            <div class="benefit-item hidden">
+                <h3>95% improvement</h3>
+                <p class="benefit-text">AI in Security can increase threat detections to 95%</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="partners">
+        <div class="container">
+            <h2>See the state of your AI security with our unified dashboard</h2>
+            <div class="container">
+                <img src="assets/dashboard.png" alt="dashboard">
+            </div>
+        </div>
+    </section>
+
+    <section id="partners">
+        <div class="container">
+            <h2>There are many types of LLM apps out there</h2>
+            <div class="container">
+                <img src="assets/llmapps.png" alt="Any LLM">
+            </div>
+        </div>
+    </section>
+
+    <section id="fees-fines">
+        <div class="container">
+            <h2>Use SonnyLabs to get the necessary security to comply with compliance standards and mandatory AI regulations</h2>
+            <div class="stat-grid">
+                <div class="stat hidden">
+                    <h3>Prevent GDPR Breaches from AI applications</h3>
+                    <p>Fines can reach up to 4% of annual global turnover or €20 million, whichever is greater</p>
+                </div>
+                <div class="stat hidden">
+                    <h3>Avoid violations from the EU AI Act</h3>
+                    <p>Violations can lead to fines of up to €30 million or 6% of annual global turnover</p>
+                </div>
+                <div class="stat hidden">
+                    <h3>Comply with NIS 2</h3>
+                    <p>Non-compliance can result in fines up to €10 million or 2% of global turnover</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="partners">
+        <div class="container">
+            <h2>Use SonnyLabs API or self-hosted option to secure your LLM apps against threats. Here are some example threat scenarios that SonnyLabs secures...</h2>
+            <div class="container">
+                <img src="assets/1.png" alt="Any LLM">
+            </div>
+            <div class="container">
+                <img src="assets/2.png" alt="Any LLM">
+            </div>
+            <div class="container">
+                <img src="assets/3.png" alt="Any LLM">
+            </div>
+            <div class="container">
+                <img src="assets/4.png" alt="Any LLM">
+            </div>
+        </div>
+    </section>
+
+    <section id="about">
+        <div class="container">
+            <h2>About Us</h2>
+            <p>Founded in 2023, SonnyLabs emerged from a clear recognition of the critical need for robust AI security solutions. At SonnyLabs, we specialise in providing comprehensive security measures to ensure your AI systems are protected at all costs.</p>
+            <p>We are proud participants in UCD Nova's prestigious AI accelerator program, co-funded by the EU, Enterprise Ireland, and CeADAR. Our vision is to ensure that AI is deployed and used securely globally. We aim to help AI systems operate securely in a high speed and efficient manner.</p>
+            <h3>Our Team</h3>
+            <div class="team-grid">
+                <div class="team-member hidden">
+                    <img src="assets/liana.jpg" alt="Liana">
+                    <h4>Liana Anca Tomescu</h4>
+                    <p>CEO & Founder</p>
+                    <a href="https://www.linkedin.com/in/liana-anca-tomescu/" target="_blank">
+                        <img src="assets/linkedin.png" alt="LinkedIn" style="width: 40px; height: 40px; margin-top: 10px;">
+                    </a>
+                </div>
+                <div class="team-member hidden">
+                    <img src="assets/paddy.png" alt="Paddy">
+                    <h4>Padraig O'Conbhui, PhD</h4>
+                    <p>CTO & Founder</p>
+                </div>
+                <div class="team-member hidden">
+                    <img src="assets/saksham.png" alt="Saksham">
+                    <h4>Saksham Garg</h4>
+                    <p>Software Engineer</p>
+                    <a href="https://www.linkedin.com/in/saksham-garg-70809a1b2/" target="_blank">
+                        <img src="assets/linkedin.png" alt="LinkedIn" style="width: 40px; height: 40px; margin-top: 10px;">
+                    </a>
+                </div>
+                <div class="team-member hidden">
+                    <img src="assets/khushi.jpeg" alt="Khushi">
+                    <h4>Khushi Moda</h4>
+                    <p>AI Development Manager</p>
+                    <a href="https://www.linkedin.com/in/khushi-moda/" target="_blank">
+                        <img src="assets/linkedin.png" alt="LinkedIn" style="width: 40px; height: 40px; margin-top: 10px;">
+                    </a>
+                </div>
+                <div class="team-member hidden">
+                    <img src="assets/Tanpreet.png" alt="Tanpreet">
+                    <h4>Tanpreet Singh Bhatia</h4>
+                    <p>Strategy & Finance Manager</p>
+                    <a href="https://www.linkedin.com/in/tanpreet-singh26/" target="_blank">
+                        <img src="assets/linkedin.png" alt="LinkedIn" style="width: 40px; height: 40px; margin-top: 10px;">
+                    </a>
+                </div>
+                <div class="team-member hidden">
+                    <img src="assets/vaman.jpeg" alt="Vaman">
+                    <h4>Vaman Shenoy</h4>
+                    <p>Operations Manager</p>
+                    <a href="https://www.linkedin.com/in/vaman-shenoy-business/" target="_blank">
+                        <img src="assets/linkedin.png" alt="LinkedIn" style="width: 40px; height: 40px; margin-top: 10px;">
+                    </a>
+                </div>
+                <div class="team-member hidden">
+                    <img src="assets/aryan.jpeg" alt="Aryan">
+                    <h4>Aryan Sanjay Lukka</h4>
+                    <p>Compliance Consultant</p>
+                    <a href="https://www.linkedin.com/in/aryan21/" target="_blank">
+                        <img src="assets/linkedin.png" alt="LinkedIn" style="width: 40px; height: 40px; margin-top: 10px;"">
+                    </a>
+                </div>
+            </div
+        </div>
+    </section>
+
+    <section id="about">
+        <div class="container">
+            <h2>Our Advisors</h2>
+            <div class="team-grid">
+                <div class="team-member hidden">
+                    <img src="assets/quirk.png" alt="Paddy">
+                    <h4>Andrew Quirk</h4>
+                    <p>AI expert, Stanford graduate</p>
+                </div>
+                <div class="team-member hidden">
+                    <img src="assets/liliana.jpeg" alt="Paddy">
+                    <h4>Liliana Pasquale</h4>
+                    <p>Head of Cybersecurity Masters programme at University College Dublin</p>
+                </div>
+                <div class="team-member hidden">
+                    <img src="assets/kushal.jpeg" alt="Paddy">
+                    <h4>Kushal Ramkumar</h4>
+                    <p>AI Security researcher at University College Dublin</p>
+                </div>
+                <div class="team-member hidden">
+                    <img src="assets/paul.jpeg" alt="Liana">
+                    <h4>Paul Coyle</h4>
+                    <p>Co-founded and exited two technology companies</p>
+                </div>
+                <div class="team-member hidden">
+                    <img src="assets/mike.png" alt="Liana">
+                    <h4>Michael O'Callaghan</h4>
+                    <p>Cybercrime expert</p>
+                </div>
+            </div
+        </div>
+    </section>
+
+    <section id="featured-in">
+        <div class="container">
+            <h2>Featured in..</h2>
+            <div class="container">
+                <img src="assets/featured.png" alt="Any LLM">
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="container">
+            <h2>Secure your LLM applications today</h2>
+            <a href="https://formsubmit.co/el/gihapo?next=https://sonnylabs.ai?email-submitted=true" target="_blank" class="cta-button">Become an early adopter</a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>info@sonnylabs.ai</p>
+            <p>NovaUCD, Dublin, Ireland</p>
+            <p>Follow us on
+                <a href="https://www.linkedin.com/company/sonnylabs-ai/?viewAsMember=true" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin-in"></i></a>
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Reveal elements on scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('show');
+                } else {
+                    entry.target.classList.remove('show');
+                }
+            });
+        });
+
+        const hiddenElements = document.querySelectorAll('.hidden');
+        hiddenElements.forEach((el) => observer.observe(el));
+
+        // Form submission
+        document.getElementById('contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for your message. We will get back to you soon!');
+            this.reset();
+        });
+
+        const hamburger = document.querySelector(".hamburger");
+        const navMenu = document.querySelector("nav ul");
+
+        hamburger.addEventListener("click", () => {
+            hamburger.classList.toggle("active");
+            navMenu.classList.toggle("active");
+        });
+
+        document.querySelectorAll("nav ul li a").forEach(n => n.addEventListener("click", () => {
+            hamburger.classList.remove("active");
+            navMenu.classList.remove("active");
+        }));
+    </script>
+</body>
+</html>

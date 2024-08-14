@@ -1,0 +1,9 @@
+Datasets:
+- https://huggingface.co/datasets/deepset/prompt-injections
+  546 rows
+- https://huggingface.co/datasets/lmsys/toxic-chat?row=14
+  10k rows
+- https://huggingface.co/datasets/predictionguard/promptinjections
+  17.7k rows
+- https://tensortrust.ai/paper/
+  126k rows
